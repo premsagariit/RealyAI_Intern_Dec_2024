@@ -1,0 +1,602 @@
+{
+  "3": {
+    "_title": "KSampler",
+    "inputs": {
+      "cfg": 2,
+      "seed": 161098661698810,
+      "model": ["18", 0],
+      "steps": 8,
+      "denoise": 1,
+      "negative": ["7", 0],
+      "positive": ["6", 0],
+      "scheduler": "karras",
+      "latent_image": ["5", 0],
+      "sampler_name": "dpmpp_sde"
+    },
+    "_widgets": [
+      {
+        "name": "seed",
+        "type": "number",
+        "value": 161098661698810,
+        "options": {
+          "max": 1.8446744073709552e19,
+          "min": 0,
+          "step": 10,
+          "round": 1,
+          "precision": 0
+        }
+      },
+      {
+        "name": "control_after_generate",
+        "type": "combo",
+        "value": "randomize",
+        "options": {
+          "values": ["fixed", "increment", "decrement", "randomize"],
+          "serialize": false
+        }
+      },
+      {
+        "name": "steps",
+        "type": "number",
+        "value": 8,
+        "options": {
+          "max": 10000,
+          "min": 1,
+          "step": 10,
+          "round": 1,
+          "precision": 0
+        }
+      },
+      {
+        "name": "cfg",
+        "type": "number",
+        "value": 2,
+        "options": {
+          "max": 100,
+          "min": 0,
+          "step": 1,
+          "round": 0.01,
+          "precision": 1
+        }
+      },
+      {
+        "name": "sampler_name",
+        "type": "combo",
+        "value": "dpmpp_sde",
+        "options": {
+          "values": [
+            "euler",
+            "euler_cfg_pp",
+            "euler_ancestral",
+            "euler_ancestral_cfg_pp",
+            "heun",
+            "heunpp2",
+            "dpm_2",
+            "dpm_2_ancestral",
+            "lms",
+            "dpm_fast",
+            "dpm_adaptive",
+            "dpmpp_2s_ancestral",
+            "dpmpp_2s_ancestral_cfg_pp",
+            "dpmpp_sde",
+            "dpmpp_sde_gpu",
+            "dpmpp_2m",
+            "dpmpp_2m_alt",
+            "dpmpp_2m_cfg_pp",
+            "dpmpp_2m_sde",
+            "dpmpp_2m_sde_gpu",
+            "dpmpp_3m_sde",
+            "dpmpp_3m_sde_gpu",
+            "ddpm",
+            "lcm",
+            "ipndm",
+            "ipndm_v",
+            "deis",
+            "res_multistep",
+            "res_multistep_cfg_pp",
+            "gradient_estimation",
+            "restart",
+            "euler_dy",
+            "euler_smea_dy",
+            "ddim",
+            "uni_pc",
+            "uni_pc_bh2",
+            "supreme",
+            "dpmpp_3m_sde_dynamic_eta",
+            "euler_ancestral_dancing",
+            "lcm_custom_noise",
+            "ttm",
+            "clyb_4m_sde_momentumized",
+            "dpmpp_dualsde_momentumized",
+            "res_momentumized",
+            "euler_dy",
+            "euler_smea_dy",
+            "euler_negative",
+            "euler_dy_negative",
+            "sonar_euler",
+            "sonar_euler_ancestral",
+            "sonar_dpmpp_sde"
+          ]
+        }
+      },
+      {
+        "name": "scheduler",
+        "type": "combo",
+        "value": "karras",
+        "options": {
+          "values": [
+            "normal",
+            "karras",
+            "exponential",
+            "sgm_uniform",
+            "simple",
+            "ddim_uniform",
+            "beta",
+            "linear_quadratic",
+            "kl_optimal"
+          ]
+        }
+      },
+      {
+        "name": "denoise",
+        "type": "number",
+        "value": 1,
+        "options": {
+          "max": 1,
+          "min": 0,
+          "step": 0.1,
+          "round": 0.01,
+          "precision": 2
+        }
+      }
+    ],
+    "class_type": "KSampler",
+    "_properties": {"Node name for S&R": "KSampler"}
+  },
+  "4": {
+    "_title": "Load Checkpoint",
+    "inputs": {"ckpt_name": "676746065682318967"},
+    "_widgets": [
+      {"name": "ckpt_name", "type": "button", "value": "676746065682318967", "options": {}}
+    ],
+    "class_type": "CheckpointLoaderSimple",
+    "_properties": {"Node name for S&R": "CheckpointLoaderSimple"}
+  },
+  "5": {
+    "_title": "Empty Latent Image",
+    "inputs": {"width": 1024, "height": 1024, "batch_size": 1},
+    "_widgets": [
+      {
+        "name": "width",
+        "type": "number",
+        "value": 1024,
+        "options": {
+          "max": 16384,
+          "min": 16,
+          "step": 80,
+          "round": 1,
+          "precision": 0
+        }
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "value": 1024,
+        "options": {
+          "max": 16384,
+          "min": 16,
+          "step": 80,
+          "round": 1,
+          "precision": 0
+        }
+      },
+      {
+        "name": "batch_size",
+        "type": "number",
+        "value": 1,
+        "options": {
+          "max": 4096,
+          "min": 1,
+          "step": 10,
+          "round": 1,
+          "precision": 0
+        }
+      }
+    ],
+    "class_type": "EmptyLatentImage",
+    "_properties": {"Node name for S&R": "EmptyLatentImage"}
+  },
+  "6": {
+    "_attrs": {"positivePrompt": true},
+    "_title": "CLIP Text Encode (Prompt)",
+    "inputs": {"clip": ["4", 1], "text": ["25", 0]},
+    "_widgets": [
+      {
+        "name": "text",
+        "type": "converted-widget",
+        "value": "",
+        "options": {"selectOn": ["focus", "click"], "hideOnZoom": true}
+      }
+    ],
+    "class_type": "CLIPTextEncode",
+    "_properties": {"Node name for S&R": "CLIPTextEncode"}
+  },
+  "7": {
+    "_attrs": {"negativePrompt": true},
+    "_title": "CLIP Text Encode (Prompt)",
+    "inputs": {"clip": ["4", 1], "text": ["25", 1]},
+    "_widgets": [
+      {
+        "name": "text",
+        "type": "converted-widget",
+        "value": "",
+        "options": {"selectOn": ["focus", "click"], "hideOnZoom": true}
+      }
+    ],
+    "class_type": "CLIPTextEncode",
+    "_properties": {"Node name for S&R": "CLIPTextEncode"}
+  },
+  "8": {
+    "_title": "VAE Decode",
+    "inputs": {"vae": ["4", 2], "samples": ["3", 0]},
+    "class_type": "VAEDecode",
+    "_properties": {"Node name for S&R": "VAEDecode"}
+  },
+  "9": {
+    "_title": "Save Image",
+    "inputs": {"images": ["8", 0], "filename_prefix": "TensorArt"},
+    "_widgets": [
+      {"name": "filename_prefix", "type": "text", "value": "TensorArt", "options": {}}
+    ],
+    "class_type": "SaveImage",
+    "_properties": {}
+  },
+  "12": {
+    "_title": "FACE",
+    "inputs": {
+      "image": "https://7022ae40757f8d53295a57619de9b364.r2.cloudflarestorage.com/tensor-sf-sig/workspace/workflow_image2image/645954010620120176/f47530cf-0d1a-42c6-916b-7821125c3205.jpg",
+      "upload": "image"
+    },
+    "_widgets": [
+      {
+        "name": "image",
+        "type": "combo",
+        "value": "https://7022ae40757f8d53295a57619de9b364.r2.cloudflarestorage.com/tensor-sf-sig/workspace/workflow_image2image/645954010620120176/f47530cf-0d1a-42c6-916b-7821125c3205.jpg",
+        "options": {"values": []}
+      },
+      {"name": "upload", "type": "button", "value": "image", "options": {}}
+    ],
+    "class_type": "LoadImage",
+    "_properties": {"Node name for S&R": "LoadImage"}
+  },
+  "18": {
+    "_title": "IPAdapter FaceID",
+    "inputs": {
+      "image": ["12", 0],
+      "model": ["38", 0],
+      "end_at": 1,
+      "weight": 0.8,
+      "start_at": 0,
+      "ipadapter": ["36", 0],
+      "clip_vision": ["39", 0],
+      "insightface": ["40", 0],
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "embeds_scaling": "K+V",
+      "weight_faceidv2": 1
+    },
+    "_widgets": [
+      {
+        "name": "weight",
+        "type": "number",
+        "value": 0.8,
+        "options": {"max": 3, "min": -1, "step": 0.5, "round": 0.01, "precision": 2}
+      },
+      {
+        "name": "weight_faceidv2",
+        "type": "number",
+        "value": 1,
+        "options": {"max": 5, "min": -1, "step": 0.5, "round": 0.01, "precision": 2}
+      },
+      {
+        "name": "weight_type",
+        "type": "combo",
+        "value": "linear",
+        "options": {
+          "values": [
+            "linear",
+            "ease in",
+            "ease out",
+            "ease in-out",
+            "reverse in-out",
+            "weak input",
+            "weak output",
+            "weak middle",
+            "strong middle",
+            "style transfer",
+            "composition",
+            "strong style transfer"
+          ]
+        }
+      },
+      {
+        "name": "combine_embeds",
+        "type": "combo",
+        "value": "concat",
+        "options": {"values": ["concat", "add", "subtract", "average", "norm average"]}
+      },
+      {
+        "name": "start_at",
+        "type": "number",
+        "value": 0,
+        "options": {"max": 1, "min": 0, "step": 0.01, "round": 0.001, "precision": 3}
+      },
+      {
+        "name": "end_at",
+        "type": "number",
+        "value": 1,
+        "options": {"max": 1, "min": 0, "step": 0.01, "round": 0.001, "precision": 3}
+      },
+      {
+        "name": "embeds_scaling",
+        "type": "combo",
+        "value": "K+V",
+        "options": {"values": ["V only", "K+V", "K+V w/ C penalty", "K+mean(V) w/ C penalty"]}
+      }
+    ],
+    "class_type": "IPAdapterFaceID",
+    "_properties": {"Node name for S&R": "IPAdapterFaceID"}
+  },
+  "25": {
+    "_title": "SDXL Prompt Styler",
+    "inputs": {
+      "style": "sai-line art",
+      "log_prompt": false,
+      "text_negative": "lowres, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, patreon logo, artist name"
+    },
+    "_widgets": [
+      {
+        "name": "text_positive",
+        "type": "customtext",
+        "value": "",
+        "options": {"selectOn": ["focus", "click"], "hideOnZoom": true}
+      },
+      {
+        "name": "text_negative",
+        "type": "customtext",
+        "value": "lowres, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, patreon logo, artist name",
+        "options": {"selectOn": ["focus", "click"], "hideOnZoom": true}
+      },
+      {
+        "name": "style",
+        "type": "combo",
+        "value": "sai-line art",
+        "options": {
+          "values": [
+            "base",
+            "sai-3d-model",
+            "sai-analog film",
+            "sai-anime",
+            "sai-cinematic",
+            "sai-comic book",
+            "sai-craft clay",
+            "sai-digital art",
+            "sai-enhance",
+            "sai-fantasy art",
+            "sai-isometric",
+            "sai-line art",
+            "sai-lowpoly",
+            "sai-neonpunk",
+            "sai-origami",
+            "sai-photographic",
+            "sai-pixel art",
+            "sai-texture",
+            "ads-advertising",
+            "ads-automotive",
+            "ads-corporate",
+            "ads-fashion editorial",
+            "ads-food photography",
+            "ads-gourmet food photography",
+            "ads-luxury",
+            "ads-real estate",
+            "ads-retail",
+            "artstyle-abstract",
+            "artstyle-abstract expressionism",
+            "artstyle-art deco",
+            "artstyle-art nouveau",
+            "artstyle-constructivist",
+            "artstyle-cubist",
+            "artstyle-expressionist",
+            "artstyle-graffiti",
+            "artstyle-hyperrealism",
+            "artstyle-impressionist",
+            "artstyle-pointillism",
+            "artstyle-pop art",
+            "artstyle-psychedelic",
+            "artstyle-renaissance",
+            "artstyle-steampunk",
+            "artstyle-surrealist",
+            "artstyle-typography",
+            "artstyle-watercolor",
+            "futuristic-biomechanical",
+            "futuristic-biomechanical cyberpunk",
+            "futuristic-cybernetic",
+            "futuristic-cybernetic robot",
+            "futuristic-cyberpunk cityscape",
+            "futuristic-futuristic",
+            "futuristic-retro cyberpunk",
+            "futuristic-retro futurism",
+            "futuristic-sci-fi",
+            "futuristic-vaporwave",
+            "game-bubble bobble",
+            "game-cyberpunk game",
+            "game-fighting game",
+            "game-gta",
+            "game-mario",
+            "game-minecraft",
+            "game-pokemon",
+            "game-retro arcade",
+            "game-retro game",
+            "game-rpg fantasy game",
+            "game-strategy game",
+            "game-streetfighter",
+            "game-zelda",
+            "misc-architectural",
+            "misc-disco",
+            "misc-dreamscape",
+            "misc-dystopian",
+            "misc-fairy tale",
+            "misc-gothic",
+            "misc-grunge",
+            "misc-horror",
+            "misc-kawaii",
+            "misc-lovecraftian",
+            "misc-macabre",
+            "misc-manga",
+            "misc-metropolis",
+            "misc-minimalist",
+            "misc-monochrome",
+            "misc-nautical",
+            "misc-space",
+            "misc-stained glass",
+            "misc-techwear fashion",
+            "misc-tribal",
+            "misc-zentangle",
+            "papercraft-collage",
+            "papercraft-flat papercut",
+            "papercraft-kirigami",
+            "papercraft-paper mache",
+            "papercraft-paper quilling",
+            "papercraft-papercut collage",
+            "papercraft-papercut shadow box",
+            "papercraft-stacked papercut",
+            "papercraft-thick layered papercut",
+            "photo-alien",
+            "photo-film noir",
+            "photo-glamour",
+            "photo-hdr",
+            "photo-iphone photographic",
+            "photo-long exposure",
+            "photo-neon noir",
+            "photo-silhouette",
+            "photo-tilt-shift"
+          ]
+        }
+      },
+      {
+        "name": "log_prompt",
+        "type": "toggle",
+        "value": false,
+        "options": {"on": "yes", "off": "no"}
+      }
+    ],
+    "class_type": "SDXLPromptStyler",
+    "_properties": {"Node name for S&R": "SDXLPromptStyler"}
+  },
+  "36": {
+    "_title": "IPAdapter Model Loader",
+    "inputs": {"ipadapter_file": "ip-adapter-faceid_sdxl.bin"},
+    "_widgets": [
+      {
+        "name": "ipadapter_file",
+        "type": "combo",
+        "value": "ip-adapter-faceid_sdxl.bin",
+        "options": {
+          "values": [
+            "Kwai-Kolors/ip_adapter_plus_general.bin",
+            "flux-ip-adapter.safetensors",
+            "ip-adapter-faceid-plus_sd15.bin",
+            "ip-adapter-faceid-plusv2_sd15.bin",
+            "ip-adapter-faceid-plusv2_sd15_b.bin",
+            "ip-adapter-faceid-plusv2_sdxl.bin",
+            "ip-adapter-faceid-portrait-v11_sd15.bin",
+            "ip-adapter-faceid-portrait_sdxl.bin",
+            "ip-adapter-faceid-portrait_sdxl_unnorm.bin",
+            "ip-adapter-faceid_sd15.bin",
+            "ip-adapter-faceid_sdxl.bin",
+            "ip-adapter-full-face_sd15.bin",
+            "ip-adapter-full-face_sd15.safetensors",
+            "ip-adapter-plus-face_sd15.bin",
+            "ip-adapter-plus-face_sd15.safetensors",
+            "ip-adapter-plus-face_sdxl_vit-h.safetensors",
+            "ip-adapter-plus_sd15.bin",
+            "ip-adapter-plus_sd15.safetensors",
+            "ip-adapter-plus_sdxl_vit-h.safetensors",
+            "ip-adapter_sd15.bin",
+            "ip-adapter_sd15.safetensors",
+            "ip-adapter_sd15_light.bin",
+            "ip-adapter_sd15_light.safetensors",
+            "ip-adapter_sd15_light_v11.bin",
+            "ip-adapter_sd15_vit-G.bin",
+            "ip-adapter_sd15_vit-G.safetensors",
+            "ip-adapter_sdxl.safetensors",
+            "ip-adapter_sdxl_vit-h.safetensors",
+            "xlabs-ai/flux-ip-adapter-v2.safetensors",
+            "xlabs-ai/flux-ip-adapter.safetensors"
+          ]
+        }
+      }
+    ],
+    "class_type": "IPAdapterModelLoader",
+    "_properties": {"Node name for S&R": "IPAdapterModelLoader"}
+  },
+  "38": {
+    "_title": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": ["4", 0],
+      "lora_name": "681174344216573550",
+      "strength_model": 0.6,
+      "tams_lora_name": "IP_adapter_face_id -  SDXL"
+    },
+    "_widgets": [
+      {"name": "lora_name", "type": "button", "value": "681174344216573550", "options": {}},
+      {"name": "tams_lora_name", "type": "combo", "value": "IP_adapter_face_id -  SDXL", "options": {"values": [""]}},
+      {"name": "strength_model", "type": "number", "value": 0.6, "options": {"max": 100, "min": -100, "step": 0.1, "round": 0.01, "precision": 2}}
+    ],
+    "class_type": "LoraLoaderModelOnly",
+    "_properties": {"Node name for S&R": "LoraLoaderModelOnly"}
+  },
+  "39": {
+    "_title": "Load CLIP Vision",
+    "inputs": {"clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"},
+    "_widgets": [
+      {
+        "name": "clip_name",
+        "type": "combo",
+        "value": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+        "options": {
+          "values": [
+            "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+            "CLIP-ViT-H-fp16.safetensors",
+            "CLIP-ViT-bigG-14-laion2B-39B-b160k.safetensors",
+            "Kwai-Kolors/pytorch_model.bin",
+            "SD1.5/image_encoder.safetensors",
+            "SD1.5/pytorch_model.bin",
+            "clip-vit-large-patch14/model.safetensors",
+            "clip_g.pth",
+            "clip_h.pth",
+            "clip_vision_g.safetensors",
+            "clip_vith.pth",
+            "clip_vith.safetensors",
+            "clip_vitl.pth",
+            "ip-adapter-plus_sd15.safetensors",
+            "model.safetensors",
+            "pytorch_model.bin",
+            "sigclip_vision_patch14_384.safetensors"
+          ]
+        }
+      }
+    ],
+    "class_type": "CLIPVisionLoader",
+    "_properties": {"Node name for S&R": "CLIPVisionLoader"}
+  },
+  "40": {
+    "_title": "Load InsightFace",
+    "inputs": {"provider": "CUDA"},
+    "_widgets": [
+      {"name": "provider", "type": "combo", "value": "CUDA", "options": {"values": ["CPU", "CUDA", "ROCM"]}}
+    ],
+    "class_type": "InsightFaceLoader",
+    "_properties": {"Node name for S&R": "InsightFaceLoader"}
+  }
+}

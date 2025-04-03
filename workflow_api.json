@@ -1,0 +1,183 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 161098661698810,
+      "steps": 8,
+      "cfg": 2,
+      "sampler_name": "dpmpp_sde",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "18",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "676746065682318967"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": [
+        "25",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": [
+        "25",
+        1
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "TensorArt",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "12": {
+    "inputs": {
+      "image": "https://7022ae40757f8d53295a57619de9b364.r2.cloudflarestorage.com/tensor-sf-sig/workspace/workflow_image2image/828243709836608805/185839e7-03e1-45d2-a954-891e86028e8d.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "FACE"
+    }
+  },
+  "18": {
+    "inputs": {
+      "model": [
+        "38",
+        0
+      ],
+      "ipadapter": [
+        "36",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "clip_vision": [
+        "39",
+        0
+      ],
+      "insightface": [
+        "40",
+        0
+      ]
+    },
+    "_meta": {}
+  },
+  "25": {
+    "inputs": {},
+    "_meta": {}
+  },
+  "36": {
+    "inputs": {},
+    "_meta": {}
+  },
+  "38": {
+    "inputs": {
+      "lora_name": "787494232656096647",
+      "strength_model": "Watercolor painting [by Adel_AI] - Paul Lovering",
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "39": {
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "40": {
+    "inputs": {},
+    "_meta": {}
+  }
+}
